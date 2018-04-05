@@ -59,7 +59,7 @@ var Word = function(wordArr, questionArr){
 
 		if(isIn){
 			correct +=1;
-			console.log(correct);
+			// console.log(correct);
 			// console.log(holderArr.length);
 			if(holderArr.length == 2){
 				// console.log(correct);
