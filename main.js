@@ -6,10 +6,10 @@ var currentWord = 0;
 
 var questionArr = 
 [
-'The holder lends money to a company or municipality with a fixed intrest rate',
-'A contract which gives the buyer the right to buy or sell at a specified price on a specified day',
-'A share of a company held by an individual or group',
-'A legal agreement to buy or sell something at a predetermined price at a specified time in the future'
+'Hint 1: The holder lends money to a company or municipality with a fixed intrest rate',
+'Hint 2: A contract which gives the buyer the right to buy or sell at a specified price on a specified day',
+'Hint 3: A share of a company held by an individual or group',
+'Hint 4: A legal agreement to buy or sell something at a predetermined price at a specified time in the future'
 ];
 
 console.log('');
