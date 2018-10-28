@@ -1,16 +1,14 @@
 var letter = require("./Letter");
-
 var ask = require("./main.js");
 
 var currentWord = 0;
-
 var myLetters;
-
 var correct = 0;
 var incorrect = 0;
-// var finish = 1;
 var guessHolder = 0;
+let wins = 0;
 
+// word constructor
 var Word = function(wordArr, questionArr){
 
 	this.question = questionArr[currentWord];
@@ -22,13 +20,14 @@ var Word = function(wordArr, questionArr){
 	this.word = wordArr[currentWord],
 
 	this.letterCall = function(){
-		// incorrect = 0;f
 		myLetters = new letter(wordArr[currentWord]);
 		guessHolder = 0;
 		myLetters.display();
-		// guessHolder = 0;
 	}
 
+	// checks if letter is in word
+	// no way to check if already guessed 
+	// bug when guessing correct letter multiple times
 	this.YorN = function(guess){
 
 		var theWord = wordArr[currentWord];
@@ -59,21 +58,19 @@ var Word = function(wordArr, questionArr){
 
 		if(isIn){
 			correct +=1;
-			// console.log(correct);
-			// console.log(holderArr.length);
 			if(holderArr.length == 2){
-				// console.log(correct);
 				guessHolder++;
 				correct +=1;
 			}
 			
 			if(correct == theWord.length){
+				wins++
 				correct = 0;
 				incorrect = 0;
 				myLetters.displayGuess(holderArr, guess);
 				currentWord += 1;
 				if(currentWord == 4){
-					console.log("Good job the game is over!");
+					console.log("Good job the game is over! You got " + wins + " out of 4 correct!");
 				}else{
 					this.questionDisplay();
 					this.letterCall();
@@ -81,31 +78,30 @@ var Word = function(wordArr, questionArr){
 				}
 			}else{
 				myLetters.displayGuess(holderArr, guess);
-				console.log('You got it!');
-				console.log('');
+				console.log('You got it!\n');
 				ask.askUser();
 			}
 		}else{
 			incorrect++;
-			// console.log(incorrect);
 			if(incorrect == 5){
 				incorrect = 0;
 				correct = 0;
 				currentWord +=1;
-				console.log('');
-				console.log("Sorry you missed 5. On to the next word.");
-				console.log('');
-				this.questionDisplay();
-				this.letterCall();
-				ask.askUser();
+				console.log("\nSorry you missed 5. On to the next word.\n");
+				if(currentWord == 4){
+					console.log("Good job the game is over! You got " + wins + " out of 4 correct!");
+				}else{
+					this.questionDisplay();
+					this.letterCall();
+					ask.askUser();
+				}
+				
 			}else{
 				myLetters.displayGuess(holderArr, guess);
-				console.log('Nope guess again!');
-				console.log('');
+				console.log('Nope guess again!\n');
 				ask.askUser();
 			}
 		}
-	// }
 	}
 }
 

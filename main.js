@@ -1,9 +1,8 @@
 var word = require("./Word");
-
 var inquirer = require('inquirer');
+
 var wordArr = ['bond', 'option', 'stock', 'future'];
 var currentWord = 0;
-
 var questionArr = 
 [
 'Hint 1: The holder lends money to a company or municipality with a fixed intrest rate',
@@ -12,19 +11,19 @@ var questionArr =
 'Hint 4: A legal agreement to buy or sell something at a predetermined price at a specified time in the future'
 ];
 
-console.log('');
-console.log('Welcome to financial hangman! Guess one letter at a time. If you miss 5 you loose.');
-console.log('');
+// game description and rules
+console.log('\nWelcome to financial hangman! Guess one letter at a time and press enter. If you miss 5 you loose.\n');
 
+// creates word object
+// starts with first question and word
 var myWord = new word(wordArr, questionArr);
 
-// myWord.start();
-
-
+// displays first question
 function askQuestion(){
 	console.log(questionArr[currentWord])
 }
 
+// uses inquirer to propmt user for guess the calls myWord to verify
 function askUser() {
 
 	inquirer.prompt([
@@ -46,7 +45,7 @@ function play(){
 	askUser();
 }
 
+// starts game
 play();
 
 module.exports.askUser = askUser;
-// module.exports.askQuestion = askQuestion;
